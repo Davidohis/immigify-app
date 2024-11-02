@@ -5,11 +5,14 @@ import { useAppContext } from "@/store/useAppContext";
 
 export default function ListedVisaTypes() {
   const { currentStep } = useAppContext();
-  const number = currentStep === 4 ? 1 : eligibilityAgent?.length;
+  const data =
+    currentStep === 3
+      ? eligibilityAgent.filter((item) => item.key === currentStep)
+      : eligibilityAgent;
 
   return (
     <div
-      className="flex justify-start items-start h-screen bg-white w-full"
+      className="flex justify-start items-start h-screen bg-white w-full hidden lg:block"
       style={{
         boxShadow: "0px -4px 12px 0px rgba(0, 0, 0, 0.05)",
       }}
@@ -32,29 +35,27 @@ export default function ListedVisaTypes() {
           for
         </p>
 
-        {eligibilityAgent
-          .filter((item) => item.key === number)
-          .map(({ label, options }) => (
-            <div
-              className="bg-white rounded-[20px] p-6 mb-6"
-              style={{
-                boxShadow: "0px 3px 8px 0px rgba(0, 0, 0, 0.15)",
-              }}
-            >
-              <h3 className="text-[14px] font-[Poppins-SemiBold] text-primary">
-                {label}
-              </h3>
-              <p className="text-primary font-[Poppins] mt-2 text-[14px]">
-                Key Eligibility Criteria Met:
-              </p>
+        {data?.map(({ label, options }) => (
+          <div
+            className="bg-white rounded-[20px] p-6 mb-6"
+            style={{
+              boxShadow: "0px 3px 8px 0px rgba(0, 0, 0, 0.15)",
+            }}
+          >
+            <h3 className="text-[14px] font-[Poppins-SemiBold] text-primary">
+              {label}
+            </h3>
+            <p className="text-primary font-[Poppins] mt-2 text-[14px]">
+              Key Eligibility Criteria Met:
+            </p>
 
-              <ul className="text-[14px] list-disc list-inside font-[Poppins] text-primary mt-2 space-y-1">
-                {options.map((text) => (
-                  <li>{text}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            <ul className="text-[14px] list-disc list-inside font-[Poppins] text-primary mt-2 space-y-1">
+              {options.map((text) => (
+                <li>{text}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );

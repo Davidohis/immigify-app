@@ -42,7 +42,7 @@ export interface ButtonCompProps {
   ref?: LegacyRef<HTMLButtonElement>;
   plain?: boolean;
   styles?: {
-    boxShadow: string
+    boxShadow: string;
   };
 }
 
@@ -58,4 +58,13 @@ export interface AppContextType {
     options: string[];
   }[];
   setQuestions: (e: []) => void;
+}
+
+export interface StepperProps {
+  steps: {
+    number: number;
+    label: string;
+  }[];
+  currentPage: number;
+  onStepClick: (stepNumber: number) => void;
 }

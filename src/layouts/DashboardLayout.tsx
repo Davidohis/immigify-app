@@ -15,7 +15,7 @@ const DashboardLayout = ({ component }: { component: ReactElement }) => {
         animate="visible"
         variants={fadeInVariants}
         transition={{ duration: 1 }}
-        className="w-full h-screen bg-white flex"
+        className="w-full h-screen bg-white flex lg:flex-row flex-col"
       >
         <Sidebar />
 

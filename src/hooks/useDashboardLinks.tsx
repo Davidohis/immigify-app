@@ -1,4 +1,13 @@
-import { DocumentIcon, EligibilityIcon, FormIcon, HistoryIcon, HomeIcon, InterviewIcon, SettingsIcon, SubscriptionIcon } from "@/assets";
+import {
+  DocumentIcon,
+  EligibilityIcon,
+  FormIcon,
+  HistoryIcon,
+  HomeIcon,
+  InterviewIcon,
+  SettingsIcon,
+  SubscriptionIcon,
+} from "@/assets";
 import {
   DASHBOARD_DOCUMENT_ROUTE,
   DASHBOARD_ELIGIBILITY_ROUTE,
@@ -15,52 +24,52 @@ const useDashboardLinks = () => {
     top: [
       {
         label: "Home",
+        short: "Home",
         icon: HomeIcon,
         to: DASHBOARD_HOME_ROUTE,
-        display: true,
       },
       {
         label: "Eligibility Agent",
+        short: "E-Agent",
         icon: EligibilityIcon,
         to: DASHBOARD_ELIGIBILITY_ROUTE,
-        display: true,
       },
       {
         label: "Document Agent",
+        short: "D-Agent",
         icon: DocumentIcon,
         to: DASHBOARD_DOCUMENT_ROUTE,
-        display: true,
       },
       {
         label: "Form-filling Agent",
+        short: "F-Agent",
         icon: FormIcon,
         to: DASHBOARD_FORMAGENT_ROUTE,
-        display: true,
       },
 
       {
         label: "Interview Prep Agent",
+        short: "I-Agent",
         icon: InterviewIcon,
         to: DASHBOARD_INTERVIEW_ROUTE,
-        display: true,
       },
       {
         label: "Subscription",
+        short: "Sub",
         icon: SubscriptionIcon,
         to: DASHBOARD_SUBSCRIPTION_ROUTE,
-        display: true,
       },
       {
         label: "History",
+        short: "History",
         icon: HistoryIcon,
         to: DASHBOARD_HISTORY_ROUTE,
-        display: true,
       },
       {
         label: "Settings",
+        short: "Setting",
         icon: SettingsIcon,
         to: DASHBOARD_SETTINGS_ROUTE,
-        display: true,
       },
     ],
   };

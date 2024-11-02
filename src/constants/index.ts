@@ -1,8 +1,8 @@
 export const pageSteps = [
-  { label: "Eligibility Agent" },
-  { label: "Document Agent" },
-  { label: "Form-Filling Agent" },
-  { label: "Interview Prep Agent" },
+  { number: 1, label: "Eligibility Agent" },
+  { number: 2, label: "Document Agent" },
+  { number: 3, label: "Form-Filling Agent" },
+  { number: 4, label: "Interview Prep Agent" },
 ];
 
 export const steps = [

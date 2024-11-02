@@ -1,23 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify-icon/react";
-import StepProgress from "./components/StepProgress";
 import { ImmigifyLogo, ShareIcon } from "@/assets";
 import { useAppContext } from "@/store/useAppContext";
-import { Button } from "@/components";
-import { steps } from "@/constants";
-import { fadeInVariants, scootLeftRight } from "@/utils";
-import Stepper from "./components/Stepper";
+import { Button, StepperComponent } from "@/components";
+import { pageSteps, steps } from "@/constants";
+import { fadeInVariants, getCountryFlag, scootLeftRight } from "@/utils";
 
-interface Step {
-  number: number;
-  label: string;
-}
 const EligibilityAgentBot: React.FC = () => {
   const { questions, setQuestions, setShowAgent, currentStep, setCurrentStep } =
     useAppContext();
-
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const checkSteps = currentStep < questions.length - 1;
+
+  const handleStepClick = (stepNumber: number) => {
+    setCurrentPage(stepNumber);
+  };
 
   const handleSelect = (selectedAnswer: string) => {
     const updatedQuestions = [...questions];
@@ -51,31 +49,15 @@ const EligibilityAgentBot: React.FC = () => {
     localStorage.removeItem("eligibility-agent-answers");
   };
 
-  console.log(">>>>educationLevel", questions);
-
-  const handleStepClick = (stepNumber: number) => {
-    setCurrentStep(stepNumber);
-  };
-
-  const steps: Step[] = [
-    { number: 1, label: "test" },
-    { number: 2, label: "test" },
-    { number: 3, label: "test" },
-    { number: 4, label: "test" },
-  ];
   return (
-    <div className="flex flex-col justify-center items-center bg-white rounded-lg  py-6 px-8 w-full">
-      {/* <StepProgress /> */}
-
-  <Stepper
-        steps={steps}
-        currentStep={currentStep}
+    <div className="flex flex-col justify-center items-center bg-white rounded-lg  py-6 lg:px-8 px-4 w-full lg:mt-0 mt-2 mb-20">
+      <StepperComponent
+        steps={pageSteps}
+        currentPage={currentPage}
         onStepClick={handleStepClick}
       />
       <div
-        className={
-          "border border-[#DADADA] border-[1px] px-6 py-8 rounded-[30px] lg:w-[700px]"
-        }
+        className={`lg:mt-0 mt-4 border border-[#DADADA] border-[1px] px-6 py-8 rounded-[30px] lg:w-[700px] ${currentStep === 0 && "lg:mr-20"}`}
       >
         <div className="flex flex-col justify-start items-start">
           <div className="flex flex-row gap-2">
@@ -89,8 +71,8 @@ const EligibilityAgentBot: React.FC = () => {
               Hello, Anthony
             </h6>
           </div>
-          <div className="flex justify-between items-center w-full">
-            <p className="lg:text-[14px] text-[12px] text-[#686868] font-[Poppins-Light] lg:leading-[20px] text-center">
+          <div className="flex justify-between items-center w-full lg:mt-0 mt-2">
+            <p className="lg:text-[14px] text-[12px] text-[#686868] font-[Poppins-Light] leading-[20px] lg:text-center lg:w-full w-[60%]">
               Keep interacting with your personal immigration assistant
             </p>
             <Button
@@ -117,7 +99,7 @@ const EligibilityAgentBot: React.FC = () => {
         <div className="bg-[#FAFAFA] py-6 px-6 rounded-[30px] mt-12">
           {questions[currentStep - 1]?.answer && (
             <>
-              <h6 className="text-end lg:text-[14px] text-[18px] text-primary font-[Poppins-Bold] lg:leading-[35px] leading-[28px]">
+              <h6 className="text-end text-[14px] text-primary font-[Poppins-Bold] leading-[35px]">
                 Anthony
               </h6>
               <div className="bg-white  py-4 px-6 rounded-[10px] w-full mb-4">
@@ -128,7 +110,7 @@ const EligibilityAgentBot: React.FC = () => {
             </>
           )}
 
-          <h6 className="lg:text-[14px] text-[18px] text-primary font-[Poppins-Bold] lg:leading-[35px] leading-[28px]">
+          <h6 className="text-[14px] text-primary font-[Poppins-Bold] leading-[35px]">
             Agent
           </h6>
 
@@ -145,7 +127,7 @@ const EligibilityAgentBot: React.FC = () => {
                     ease: "anticipate",
                   }}
                   variants={fadeInVariants}
-                  className="font-semibold mb-4 text-primary border-[#DEDEDE] border-b-[1px] pb-2"
+                  className="font-semibold mb-4 lg:text-[16px] text-[14px] text-primary border-[#DEDEDE] border-b-[1px] pb-2"
                 >
                   {questions[currentStep]?.question}
                 </motion.p>
@@ -166,15 +148,28 @@ const EligibilityAgentBot: React.FC = () => {
                       <Button
                         disabled={!checkSteps}
                         onClick={() => handleSelect(option)}
-                        className="border text-[14px] border-[#CCCCCC] text-[#262626] bg-white"
+                        className="border lg:px-6 px-4 text-[14px] border-[#CCCCCC] text-[#262626] bg-white"
                       >
                         {option}
+                        {getCountryFlag(option)}
                       </Button>
                     </motion.div>
                   ))}
 
+                  {currentStep === 1 && (
+                    <Button className="ml-1 w-auto px-[16px] h-[40px] rounded-[8px] bg-primary text-white">
+                      <Icon
+                        icon="tabler:search"
+                        height={18}
+                        style={{
+                          color: "white",
+                        }}
+                      />
+                    </Button>
+                  )}
+
                   {currentStep === 2 && (
-                    <div className="flex items-center  mt-4 w-full">
+                    <div className="flex lg:items-center lg:flex-row flex-col  mt-4 w-full">
                       <span className=" text-primary text-[14px] w-[70%]">
                         Occupation Not Listed above?
                       </span>

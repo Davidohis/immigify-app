@@ -6,6 +6,9 @@ export { default as DashboardLogo } from "./svg/logo.svg";
 export { default as ImmigifyLogo } from "./svg/logo-icon.svg";
 export { default as NotificationIcon } from "./svg/BellOutline.svg";
 export { default as ShareIcon } from "./svg/share-icon.svg";
+export { default as NigeriaFlag } from "./svg/flag-nigeria.svg";
+export { default as GhanaFlag } from "./svg/flag-ghana.svg";
+export { default as SouthAfricaFlag } from "./svg/flag-south-africa.svg";
 
 export const HomeIcon = ({ active }: { active: boolean }) => {
   return (
