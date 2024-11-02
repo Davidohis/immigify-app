@@ -12,7 +12,7 @@ const Router = () => {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
-        <Route element={<Navigate to={DASHBOARD_HOME_ROUTE} />} path={"/"} />
+        <Route element={<Navigate to={DASHBOARD_ELIGIBILITY_ROUTE} />} path={"/"} />
         <Route
           path={DASHBOARD_HOME_ROUTE}
           element={<DashboardLayout component={<HomePage />} />}
