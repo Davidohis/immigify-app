@@ -35,27 +35,40 @@ export default function ListedVisaTypes() {
           for
         </p>
 
-        {data?.map(({ label, options }) => (
-          <div
-            className="bg-white rounded-[20px] p-6 mb-6"
-            style={{
-              boxShadow: "0px 3px 8px 0px rgba(0, 0, 0, 0.15)",
-            }}
-          >
-            <h3 className="text-[14px] font-[Poppins-SemiBold] text-primary">
-              {label}
-            </h3>
-            <p className="text-primary font-[Poppins] mt-2 text-[14px]">
-              Key Eligibility Criteria Met:
-            </p>
-
-            <ul className="text-[14px] list-disc list-inside font-[Poppins] text-primary mt-2 space-y-1">
-              {options.map((text) => (
-                <li>{text}</li>
-              ))}
-            </ul>
+        {currentStep === 1 ? (
+          <div className="flex justify-center items-center mt-36">
+            <Icon
+              icon="eos-icons:three-dots-loading"
+              style={{ color: "#111827" }}
+              color={"#111827"}
+              height={80}
+            />
           </div>
-        ))}
+        ) : (
+          <>
+            {data?.map(({ label, options }) => (
+              <div
+                className="bg-white rounded-[20px] p-6 mb-6"
+                style={{
+                  boxShadow: "0px 3px 8px 0px rgba(0, 0, 0, 0.15)",
+                }}
+              >
+                <h3 className="text-[14px] font-[Poppins-SemiBold] text-primary">
+                  {label}
+                </h3>
+                <p className="text-primary font-[Poppins] mt-2 text-[14px]">
+                  Key Eligibility Criteria Met:
+                </p>
+
+                <ul className="text-[14px] list-disc list-inside font-[Poppins] text-primary mt-2 space-y-1">
+                  {options.map((text) => (
+                    <li>{text}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
