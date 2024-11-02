@@ -33,8 +33,6 @@ const EligibilityAgentBot: React.FC = () => {
       );
 
       setCurrentStep(currentStep + 1);
-    } else {
-      alert("You have completed all questions!");
     }
   };
 
